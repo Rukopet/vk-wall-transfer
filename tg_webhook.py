@@ -72,7 +72,7 @@ class MyTeleBot(TeleBot):
 
 class telegram_wall:
     @staticmethod
-    def _send_message(bot: MyTeleBot, chat_id: int, mes: Message):
+    def _send_message(bot: MyTeleBot, chat_id: int, mes: Message) -> Response:
         msg_text = f'{mes.fullname} написал на стене:\n{mes.text}'
         if mes.attachments is not None:
             return bot.send_photos(mes.attachments, msg_text)
