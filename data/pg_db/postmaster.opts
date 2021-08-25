@@ -1,0 +1,1 @@
+/Applications/Postgres.app/Contents/Versions/13/bin/postgres "-D" "/Users/egums/projects/test_igent/data/pg_db" "-p" "5432"

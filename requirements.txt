@@ -1,0 +1,7 @@
+environs==8.0.0
+requests==2.26.0
+vk-api==11.9.4
+psycopg2~=2.7.7
+marshmallow~=3.13.0
+desert~=2020.11.18
+telebot~=0.0.4
