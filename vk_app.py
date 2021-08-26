@@ -32,9 +32,8 @@ def main():
     for event in longpoll.listen():
         obj = event.raw.get('object')
         # obj = d.get('object')
-        schema = MessageSchema(unknown=EXCLUDE)
+        schema = MessageSchema(unknown=EXCLUDE, context={"api": vk})
         # context let us use API inside schema
-        schema.context = {"api": vk}
         mes = schema.load(obj)
         mes.linked_tg_post = telegram_wall.send_message_return_tg_post_id(tg_bot, mes)
         PgDB.create_record_db_with_vk_event(mes)
