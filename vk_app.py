@@ -20,6 +20,8 @@ def main():
     # autorization by token of group bot 
     vk_session = VkApi(token=config.VK_TOKEN)
 
+    watchable_events = ['wall_reply_new', 'wall_post_new']
+
     # call the longpool api
     longpoll = VkBotLongPoll(vk_session, config.VK_GROUP_ID)
 
@@ -31,6 +33,8 @@ def main():
 
     for event in longpoll.listen():
         obj = event.raw.get('object')
+        if event.type not in watchable_events:
+            continue
         # obj = d.get('object')
         schema = MessageSchema(unknown=EXCLUDE, context={"api": vk})
         # context let us use API inside schema

@@ -1,12 +1,8 @@
-from dataclasses import dataclass, field
-from pprint import pprint
-from typing import List, Dict, Optional, Type, Any
+from dataclasses import dataclass
+from typing import List, Dict, Optional, Any
 from marshmallow import Schema, fields, post_load
 from marshmallow.utils import EXCLUDE
-from vk_api import VkApi, exceptions
-from vk_api.bot_longpoll import VkBotLongPoll
-from data import config
-import data
+from vk_api import exceptions
 
 Table = Any
 
@@ -94,7 +90,7 @@ class MessageSchema(Schema):
 
     @post_load
     def make_message(self, data, **kwargs):
-        data['fullname'] = self._get_name(data['user_id'])
+        data['fullname'] = self._get_name(data.get('user_id'))
         data['mes_type'] = "wall_post_new" if data.get('linked_id') is None else "wall_reply_new"
         tmp = data.get('attachments')
         if tmp is None:
